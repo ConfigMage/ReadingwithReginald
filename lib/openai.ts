@@ -56,9 +56,14 @@ export async function generateImage({
 
   const image = response.data?.[0];
   const imageUrl = image?.url;
+  const imageBase64 = (image as { b64_json?: string } | undefined)?.b64_json;
 
   if (imageUrl) {
     return imageUrl;
+  }
+
+  if (imageBase64) {
+    return `data:image/png;base64,${imageBase64}`;
   }
 
   throw new Error(

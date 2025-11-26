@@ -18,16 +18,10 @@ export async function POST(request: Request) {
     const json = await request.json();
     const body = saveBookSchema.parse(json);
 
-    const sanitizedPages = body.pages.map((page) => {
-      if (page.imageUrl.startsWith("data:image")) {
-        throw new Error("Image payload too large. Please regenerate images to use hosted URLs instead of base64 data.");
-      }
-
-      return {
-        ...page,
-        imagePrompt: page.imagePrompt.slice(0, 500)
-      };
-    });
+    const sanitizedPages = body.pages.map((page) => ({
+      ...page,
+      imagePrompt: page.imagePrompt.slice(0, 500)
+    }));
 
     const characterSheet =
       typeof body.characterSheet === "string" ? JSON.parse(body.characterSheet) : body.characterSheet;

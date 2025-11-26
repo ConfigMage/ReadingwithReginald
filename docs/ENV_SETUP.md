@@ -7,15 +7,12 @@ Use these variables (see `.env.example`):
 - `OPENAI_IMAGE_MODEL`: Set to `gpt-image-1`.
 - `DATABASE_URL`: Postgres connection string from Neon.
 
-### Getting the Neon `DATABASE_URL`
-1. Sign in to [Neon](https://console.neon.tech/) and create a project.
-2. In the project dashboard, open the **Connection Details** panel.
-3. Copy the **Postgres connection string** (choose the pooled connection string for serverless/Vercel).
-4. Add `?sslmode=require` if it is not already present.
-5. Paste into `.env` as `DATABASE_URL=postgresql://...`.
+### Getting the `DATABASE_URL`
+- **Neon**: Sign in at [Neon](https://console.neon.tech/), create a project, open **Connection Details**, copy the pooled Postgres connection string, and ensure `?sslmode=require` is present. Set it as `DATABASE_URL` (and optionally `POSTGRES_URL` for Prisma tooling compatibility).
+- **Prisma Accelerate (Data Proxy)**: If you have a `prisma+postgres://accelerate.prisma-data.net/?api_key=...` URL, set it as `PRISMA_DATABASE_URL` and also set `DATABASE_URL` to the same value for consistency. Do not commit real keys—add them only in your Vercel project settings.
 
 ### Apply changes
-1. Add the variables to `.env` (do not commit the file).
+1. Add the variables to `.env` (do not commit the file). For Vercel, set them in **Project Settings → Environment Variables**.
 2. Run `npm install` if dependencies changed.
 3. Run `npx prisma generate` and then `npx prisma migrate dev` (or `prisma migrate deploy` in production) to sync the schema.
 4. Start the app with `npm run dev`.

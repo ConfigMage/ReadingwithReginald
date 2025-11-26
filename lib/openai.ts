@@ -51,7 +51,6 @@ export async function generateImage({
     model: OPENAI_IMAGE_MODEL,
     prompt,
     size,
-    quality: "standard",
     n: 1
   });
 

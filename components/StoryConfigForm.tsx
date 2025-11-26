@@ -103,7 +103,7 @@ export function StoryConfigForm({ onSubmit, disabled }: Props) {
             <Input
               id="childName"
               placeholder="Sam, Amina, Riley..."
-              value={config.childName}
+              value={config.childName ?? ""}
               onChange={(e) => setConfig((prev) => ({ ...prev, childName: e.target.value }))}
               disabled={disabled}
             />
@@ -143,7 +143,7 @@ export function StoryConfigForm({ onSubmit, disabled }: Props) {
           <Input
             id="lesson"
             placeholder="Sharing, being brave about the dark, trying new foods..."
-            value={config.lessonOfTheDay}
+            value={config.lessonOfTheDay ?? ""}
             onChange={(e) => setConfig((prev) => ({ ...prev, lessonOfTheDay: e.target.value }))}
             disabled={disabled}
           />

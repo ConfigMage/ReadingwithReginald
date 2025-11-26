@@ -50,13 +50,16 @@ export async function generateImage({
   const response = await client.images.generate({
     model: OPENAI_IMAGE_MODEL,
     prompt,
-    size
+    size,
+    response_format: "url"
   });
 
-  const imageUrl = response.data?.[0]?.url;
-  if (!imageUrl) {
-    throw new Error("No image URL returned from OpenAI");
-  }
+  const image = response.data?.[0];
+  const imageUrl = image?.url;
+  const base64 = (image as { b64_json?: string })?.b64_json;
 
-  return imageUrl;
+  if (imageUrl) return imageUrl;
+  if (base64) return `data:image/png;base64,${base64}`;
+
+  throw new Error("No image URL returned from OpenAI");
 }

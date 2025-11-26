@@ -15,10 +15,10 @@ export interface StoryConfig {
   theme: Theme;
   style: ArtStyle;
   tone: Tone;
-  childName?: string;
+  childName?: string | null;
   totalPages: number;
   favorites: string[];
-  lessonOfTheDay?: string;
+  lessonOfTheDay?: string | null;
   strictSafety: boolean;
 }
 
@@ -80,9 +80,9 @@ export interface SaveBookPayload {
   theme: string;
   style: string;
   totalPages: number;
-  childName?: string;
+  childName?: string | null;
   favorites: string[];
-  lessonOfTheDay?: string;
+  lessonOfTheDay?: string | null;
   tone: string;
   characterSheet: unknown;
   outline: unknown;

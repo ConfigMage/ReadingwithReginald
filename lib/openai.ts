@@ -56,15 +56,12 @@ export async function generateImage({
 
   const image = response.data?.[0];
   const imageUrl = image?.url;
-  const base64 = (image as { b64_json?: string | null } | undefined)?.b64_json;
 
   if (imageUrl) {
     return imageUrl;
   }
 
-  if (base64) {
-    return `data:image/png;base64,${base64}`;
-  }
-
-  throw new Error(`No image URL returned from OpenAI. Raw data: ${JSON.stringify(image ?? response.data)}`);
+  throw new Error(
+    `No image URL returned from OpenAI. Raw data: ${JSON.stringify(image ?? response.data ?? null)}`
+  );
 }

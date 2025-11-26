@@ -44,7 +44,7 @@ export async function generateImage({
   size = "1024x1024"
 }: {
   prompt: string;
-  size?: "512x512" | "768x768" | "1024x1024";
+  size?: "256x256" | "512x512" | "1024x1024" | "1024x1792" | "1792x1024" | "auto";
 }) {
   const client = getClient();
   const response = await client.images.generate({

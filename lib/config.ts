@@ -1,6 +1,7 @@
 export const OPENAI_TEXT_MODEL = process.env.OPENAI_TEXT_MODEL || "gpt-5.1";
 export const OPENAI_IMAGE_MODEL = process.env.OPENAI_IMAGE_MODEL || "gpt-image-1";
-export const DEFAULT_TEMPERATURE = 0.8;
+// gpt-5.1 currently only supports the default temperature (1).
+export const DEFAULT_TEMPERATURE = 1;
 
 export function requireEnv(name: string) {
   const value = process.env[name];

@@ -24,8 +24,7 @@ export async function POST(request: Request) {
 
     const completion = await runChatCompletion({
       system: systemPrompt,
-      user: userPrompt,
-      temperature: 0.9
+      user: userPrompt
     });
 
     let parsed: GeneratedPage | null = null;

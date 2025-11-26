@@ -2,6 +2,15 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { saveBookSchema } from "@/lib/validation";
 
+// Allow larger payloads when saving books (texts + image URLs).
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "10mb"
+    }
+  }
+};
+
 export async function POST(request: Request) {
   try {
     const json = await request.json();
